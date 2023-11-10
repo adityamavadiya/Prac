@@ -1,0 +1,28 @@
+domains
+	name,joblocation,maritalstatus,gender=symbol
+	age=integer
+predicates
+	employee(name,age,joblocation,maritalstatus,gender)
+	rule(integer)
+	start
+clauses
+	start:-write("Press 1 for list of married employees."),nl,
+	write("Press 2 for list of unmarried employees."),nl,
+	write("Press 3 for list of male employees."),nl,
+	write("Press 4 for list of female employees."),nl,
+	write("Press 5 for list of employees with given job location."),nl,
+	write("Enter your choice: "),readint(X),nl,rule(X).
+	
+	employee(ram,23,nadiad,married,male).
+	employee(prem,44,baroda,unmarried,male).
+	employee(babita,59,anand,married,female).
+	employee(diya,38,baroda,unmarried,female).
+	employee(aditya,29,nadiad,unmarried,male).
+	
+	rule(1):-employee(X,_,_,married,_),write(X),nl.
+	rule(2):-employee(X,_,_,unmarried,_),write(X),nl.
+	rule(3):-employee(X,_,_,_,male),write(X),nl.
+	rule(4):-employee(X,_,_,_,female),write(X),nl.
+	rule(5):-write("Enter the location: "),readln(Y),nl,employee(X,_,Y,_,_),
+	write(X),nl.
+	

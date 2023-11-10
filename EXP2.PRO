@@ -1,0 +1,16 @@
+domains
+	person,city,state=symbol
+predicates
+	Location(city,state)
+	Stays(person,city)
+	find_state(person,state)
+	list(person,city,state)
+clauses
+	Location(anand,gujarat).
+	Location(pune,maharastra).
+	Location(surat,gujarat).
+	Stays(ram,anand).
+	Stays(mohan,pune).
+	Stays(trove,surat).
+	find_state(X,Y):-Stays(X,A),location(A,Y).
+	list(X,Y,Z):-Location(Y,Z),Stays(X,Y).

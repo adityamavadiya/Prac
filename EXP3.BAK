@@ -1,0 +1,33 @@
+predicates
+	Parent(symbol,symbol)
+	Male(symbol)
+	Female(symbol)
+	Mother(symbol,symbol)
+	Father(symbol,symbol)
+	Sibling(symbol,symbol)
+	Grandfather(symbol,symbol)
+	Brother(symbol,symbol)
+	Sister(symbol,symbol)
+	Uncle(symbol,symbol)
+	Aunt(symbol,symbol)
+clauses
+	Parent("Bharat","Dashrath").
+	Parent("Bharat","Sheena").
+	Parent("Dashrath","Ram").
+	Parent("Dashrath","Laxman").
+	Parent("Kaushalya","Ram").
+	Parent("Kaushalya","Laxman").
+	Male("Bharat").
+	Male("Ram").
+	Male("Laxman").
+	Male("Dashrath").
+	Female("Sheena").
+	Female("Kaushalya").
+	Mother(X,Y):-Parent(X,Y),Female(X).
+	Father(X,Y):-Parent(X,Y),Male(X).
+	Sibling(X,Y):-Father(A,X),Father(A,Y),not(X=Y).
+	Grandfather(X,Y):-Parent(A,Y),Father(X,A).
+	Brother(X,Y):-Sibling(X,Y),Male(X).
+	Sister(X,Y):-Sibling(X,Y),Female(X).
+	Uncle(X,Y):-Parent(A,Y),Brother(X,A).
+	Aunt(X,Y):-Parent(A,Y),Sister(X,A).

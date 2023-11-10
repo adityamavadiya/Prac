@@ -1,0 +1,9 @@
+predicates
+	start
+	info
+	Res(symbol,integer,integer)
+clauses
+	start:write("Student Name: "),readln(N),write(N),nl,
+	write("Roll Number: "),readln(R),write(R),nl,
+	write("Info of 3 subjects:- "),nl
+	info:-write("Name: "),readln()

@@ -1,0 +1,138 @@
+Add element
+domains
+    x = integer
+    l = integer*
+predicates
+    add(x,l,l)
+clauses
+    add(X,List,[X|List]).
+Append two list
+
+domains
+    list=symbol*
+ predicates
+    con(list,list,list)  
+clauses
+
+    con([],L1,L1).
+    
+    con([X|Tail],L2,[X|Tail1]):-
+        con(Tail,L2,Tail1).
+Delete element
+
+domains
+    x = integer
+    l = integer*
+    
+predicates
+    delete(x,l,l)
+    concatenate(l,l,l)
+    
+clauses
+    concatenate([],List,List).
+    
+    concatenate([X|List1],List2,[X|List3]) :-
+        concatenate(List1,List2,List3).
+        
+    delete(Element,List,DelList) :-
+        concatenate(List1,[Element|List2],List),
+        concatenate(List1,List2,DelList),
+        write("The list after deleting " , Element , " is "),
+        nl.
+
+Delete from anywhere
+domains
+    list=symbol*
+   
+predicates
+
+    del(symbol,list,list)    
+clauses
+    del(X,[X|Tail],Tail).  
+    del(X,[Y|Tail],[Y|Tail1]):-
+        del(X,Tail,Tail1).
+split
+domains
+    list=integer*
+predicates
+    split(list,list,list)
+clauses
+    split([],[],[]).
+    split([X|L],[X|L1],L2):-
+        X>= 0,
+        !,    
+        split(L,L1,L2).
+        
+    split([X|L],L1,[X|L2]):-
+        split(L,L1,L2).
+domains
+    x = integer
+    l = integer*
+predicates
+    insert(x,l,l)
+    delete(x,l,l)
+    concatenate(l,l,l)
+clauses
+    concatenate([],L,L).
+    concatenate([X|L1],L2,[X|L3]) :-
+        concatenate(L1,L2,L3).
+    
+    delete(X,L,L1) :-
+        concatenate(L3,[X|L2],L),
+        concatenate(L3,L2,L1).
+
+    insert(X,[],[X]).
+            
+    insert(X,L,L1) :-
+        delete(X,L1,L).
+last element
+domains
+
+    list=symbol*
+predicates
+    last(list)
+clauses
+
+    last([X]):-
+        write("\nLast element is : "),
+        write(X).
+    last([Y|Tail]):-
+        last(Tail).
+member
+trace
+domains
+    namelist = symbol*
+     N = symbol
+predicates
+    member(symbol,namelist)
+    delete(symbol,namelist,namelist)
+clauses
+    member(X,List):-
+        delete(X,List,_). 
+    delete(X,[X|Tail],Tail). 
+        
+    delete(X,[Y|Tail1],[Y|Tail2]):-
+        delete(X,Tail1,Tail2).
+domains
+    l = integer*    
+predicates
+    printlist(l)
+clauses
+    printlist([]).
+    
+    printlist([X|List]) :-
+        write(X),nl,
+        printlist(List).
+
+domains
+    list=symbol*
+predicates
+    last(list)  
+clauses
+
+    last([X]):-
+        write("\nLast element is : "),
+        write(X).
+        
+    last([Y|Tail]):-
+        last(Tail).

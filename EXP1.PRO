@@ -1,0 +1,11 @@
+domains
+	branch,name=symbol
+predicates
+	student(name,branch)
+clauses
+	student(prem,it).
+	student(claire,ce).
+	student("Sita",ce).
+	student(stan,it).
+	student(prag,it).
+	student(magnus,ec).
